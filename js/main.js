@@ -2,6 +2,10 @@
 
 // -------------- 뱃지 부분 --------------
 // --------------------- ScrollToPlugin --------------------(나중에 추가)
+/**
+ * 페이지 스크롤에 따른 요소 제어
+ */
+// 페이지 스크롤에 영향을 받는 요소들을 검색!
 const badgeEl = document.querySelector('header .badges');
 // document => html자체 , window => 우리가 보고 있는 화면 자체
 const toTopEl = document.querySelector('#to-top');
@@ -22,7 +26,8 @@ const toTopEl = document.querySelector('#to-top');
 // 스크롤이벤트에 _.throttle() 거의 필수사용 해줌
 window.addEventListener('scroll', _.throttle( function(){
   // console.log('scroll');
-  console.log(window.scrollY);
+  // console.log(window.scrollY);
+  // 페이지 스크롤 위치가 500px이 넘으면.
   if ( window.scrollY > 500 ){
     // 배지 숨기기
     // badgeEl.style.display = 'none'; 너무 딱딱해서 라이브러리 갖고와서 애니메이션 추가할거임
@@ -31,12 +36,13 @@ window.addEventListener('scroll', _.throttle( function(){
       display: 'none'
     });
 
-    // 버튼 보이기!
+    // 상단으로 스크롤 버튼 보이기!
     // '#to-top' 대신 변수 toTopEl 로 바꿔주기
     gsap.to(toTopEl, .2, {
       x: 0
     });
 
+  // 페이지 스크롤 위치가 500px이 넘지 않으면,
   } else {
     // 배지 보이기
     // badgeEl.style.display = 'block';
@@ -45,11 +51,10 @@ window.addEventListener('scroll', _.throttle( function(){
       display: 'block'
     });
 
-    // 버튼 숨기기!
+    // 상단으로 스크롤 버튼 숨기기!
     gsap.to(toTopEl, .2, {
       x: 100
     });
-
   }
 }, 300 ));
 // 애니메이션 라이브러리 갖고오기 gsap cdn검색 cdnjs.com > libraries 들어가기
@@ -68,7 +73,9 @@ window.addEventListener('scroll', _.throttle( function(){
 // --------------------- ScrollToPlugin --------------------(나중에 추가)
 // const toTopEl = document.querySelector('#to-top');
 // 맨 마지막 #to-top 효율적인 코드 위에 위쪽에다가 붙임
-toTopEl.addEventListener('click', function(){
+// 상단으로 스크롤 버튼을 클릭하면,
+toTopEl.addEventListener('click', function () {
+  // 페이지 위치를 최상단으로 부드러버게(0.7초 동안)이동
   gsap.to(window, .7, {
     scrollTo: 0
   });
@@ -77,8 +84,14 @@ toTopEl.addEventListener('click', function(){
 
 
 // -------------- VISUAL 부분 --------------
+/**
+ * 순서대로 나타나는 기능
+ */
+// 나타날 요소들(.fade-in) 찾기.
 const fadeEls = document.querySelectorAll('.visual .fade-in');
-fadeEls.forEach(function( fadeEl, index ){
+// 나타날 요소들을 하나씩 반복해서 처리!
+fadeEls.forEach(function (fadeEl, index) {
+  // 각 요소들을 순서대로(delay) 보여지게 함!
   // gsap.to( 요소, 지속시간 {옵션});
   gsap.to( fadeEl, 1, {
     delay: (index + 1) * .7, // 각각 0.7, 1.4, 2.1, 2.7 뒤에 실행됨.
@@ -89,6 +102,9 @@ fadeEls.forEach(function( fadeEl, index ){
 
 
 // ------------------- NOTICE -------------------
+/**
+ * 슬라이드 요소 관리
+ */
 // swiperjs검색 swiperjs.com
 // get started 들어가서 Use Swiper from CDN 부분의 링크 코드 복사(css.js 두 가지다 써야 하는데 두가지 모두 두 버전이 있음 그 중에 min(압축버전)쓰면됨.)
 // main.js위에 붙여넣기(기본적인 css가 적용 돼있기 때문에 css링크 필수 이다)
@@ -103,9 +119,9 @@ fadeEls.forEach(function( fadeEl, index ){
 // new : 클래스 생성자
 // new Swipier(선택자, 옵션)
 new Swiper('.notice-line .swiper-container', {
-  direction: 'vertical',
-  autoplay: true,
-  loop: true
+  direction: 'vertical', // 수직 슬라이드
+  autoplay: true, // 자동 재생 여부
+  loop: true // 반복 재생 여부
 })
 
 // 자동재생과 반복재생을 하겠다.(불린데이터 형식으로 써줘야 함)

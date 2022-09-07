@@ -209,7 +209,7 @@ header .main-menu {
   z-index: 1; /* hover 했을 때 우측 fixed된 뱃지 영역 가리기 위해 */
   display: flex;
 }
-header .main-menu .item {}
+/* header .main-menu .item {} */
 header .main-menu .item .item__name {
   padding: 10px 20px 34px 20px;
   font-family: Arial, sans-serif;

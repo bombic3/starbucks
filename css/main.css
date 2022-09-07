@@ -51,25 +51,26 @@
 }
 
 /* NOTICE */
+/* NOTICE LINE */
 .notice .notice-line {
   position: relative;
   /* height값 relative때문에 최소값됨. 자식인 inner의 height값으로 맞춰짐 */
 }
 .notice .notice-line .bg-left {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 50%;
   height: 100%; /* height값 부모의 relative때문에 최소값. 부모는 inner의 height값으로 맞춰짐 */
   background-color: #333;
-}
-.notice .notice-line .bg-right {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
+}
+.notice .notice-line .bg-right {
   width: 50%;
   height: 100%;
   background-color: #f6f5ef;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .notice .notice-line .inner {
   height: 62px;
@@ -83,7 +84,6 @@
   background-color: #333;
   display: flex;
   align-items: center;
-
 }
 .notice .notice-line .inner__left h2 {
   color: #fff;
@@ -100,9 +100,13 @@
   height: 62px;
   display: flex;
   align-items: center;
+  opacity: 0;
 }
 .notice .notice-line .inner__left .swiper-slide a {
   color: #fff;
+}
+.notice .notice-line .inner__left .swiper-slide-active {
+  opacity: 1;
 }
 .notice .notice-line .inner__left .notice-line__more {
   /* border: 2px solid red; */
