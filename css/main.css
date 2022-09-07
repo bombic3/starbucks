@@ -51,7 +51,6 @@
 }
 
 /* NOTICE */
-.notice {}
 .notice .notice-line {
   position: relative;
   /* height값 relative때문에 최소값됨. 자식인 inner의 height값으로 맞춰짐 */
@@ -74,6 +73,7 @@
 }
 .notice .notice-line .inner {
   height: 62px;
+  z-index: 1;
   /* border: 2px solid red; 처음에 임의로 확인위해 넣는 것 */
   display: flex;
 }
